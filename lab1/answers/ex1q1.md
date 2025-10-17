@@ -67,4 +67,4 @@ Searching for value: 'CEVA'
 ex1             0x402010 0x41564543 /* 'CEVA' */
 ex1             0x403010 0x41564543 /* 'CEVA' */
 ```
-So, the `.rodata` section is between 0x402000 and 0x404000. I can presume that the `.bss` section is also located here,
+So, the `.rodata` section is between 0x402000 and 0x404000. I can presume that the `.bss` section is located where the `data` section is located.
