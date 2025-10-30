@@ -4,4 +4,4 @@
 
 ## Answer
 
-1 long + 1 int + 32 chars = 8 + 4 + 32 = 48
+8 bytes from long + 4 (+4) from int + 32 bytes = 48 + 8 bytes from old_rbp = 56 bytes 
