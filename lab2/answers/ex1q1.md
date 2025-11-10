@@ -4,8 +4,6 @@
 
 Simply put, a buffer overflow is when you try to copy more data into a memory location (buffer) than that memory is supposed to hold. For example, if you try to input MORE than 8 characters into a buffer of 8 characters, the copy operations to that buffer *might* continue copying past the end of it. What *past the end* means is that the extra bytes will be copied *up* the stack. The following image presents an example of a buffer overflow that overwrites adjacent value `is_admin` on the stack:
 
-![buffer overflow](../img/buffer_overflow.png)
-
 **[Q1]**: Can you imagine a scenario where this would affect a program's behavior?
 
 
