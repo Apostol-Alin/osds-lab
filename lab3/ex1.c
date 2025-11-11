@@ -45,7 +45,6 @@ int check_booking() {
 
 	puts("Please input your name to check your booking:");
 	scanf("%s", name);
-
 	return is_booked(airlines[index], name);
 }
 
