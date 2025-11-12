@@ -1,0 +1,15 @@
+Gadgets information
+============================================================
+0x0000000000401146 : mov byte ptr [rip + 0x2f13], 1 ; pop rbp ; ret
+0x0000000000401249 : mov dl, byte ptr [rax + 0x5e5a5890] ; pop rdi ; pop rbp ; ret
+0x0000000000401307 : mov eax, 0 ; pop rbp ; ret
+0x000000000040124c : pop rax ; pop rdx ; pop rsi ; pop rdi ; pop rbp ; ret
+0x000000000040114d : pop rbp ; ret
+0x000000000040124f : pop rdi ; pop rbp ; ret
+0x000000000040124d : pop rdx ; pop rsi ; pop rdi ; pop rbp ; ret
+0x000000000040124e : pop rsi ; pop rdi ; pop rbp ; ret
+0x000000000040101a : ret
+0x0000000000401072 : ret 0x2f
+0x0000000000401191 : ret 0xce89
+
+Unique gadgets found: 11

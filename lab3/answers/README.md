@@ -94,114 +94,28 @@ Then calls `memcpy` to copy into `bad_nightmare` the whole of `souldream` (256 b
 **Answer**: 
 
 ```bash
-ROPgadget --binary ./bin/ex2 
-Gadgets information
-============================================================
-0x0000000000401148 : adc ebp, dword ptr [rdi] ; add byte ptr [rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop ; ret
-0x0000000000401077 : add al, 0 ; add byte ptr [rax], al ; jmp 0x401020
-0x0000000000401057 : add al, byte ptr [rax] ; add byte ptr [rax], al ; jmp 0x401020
-0x0000000000401178 : add bh, al ; cld ; add byte ptr [rax], al ; add byte ptr [rax], al ; jmp 0x4011a7
-0x00000000004010e3 : add byte ptr [rax], 0 ; add byte ptr [rax], al ; ret
-0x00000000004010ac : add byte ptr [rax], al ; add byte ptr [rax], al ; endbr64 ; ret
-0x0000000000401037 : add byte ptr [rax], al ; add byte ptr [rax], al ; jmp 0x401020
-0x000000000040117c : add byte ptr [rax], al ; add byte ptr [rax], al ; jmp 0x4011a7
-0x00000000004011de : add byte ptr [rax], al ; add byte ptr [rax], al ; jmp 0x4011f2
-0x00000000004011ce : add byte ptr [rax], al ; add byte ptr [rax], al ; jmp 0x401236
-0x0000000000401308 : add byte ptr [rax], al ; add byte ptr [rax], al ; pop rbp ; ret
-0x00000000004010e4 : add byte ptr [rax], al ; add byte ptr [rax], al ; ret
-0x000000000040114a : add byte ptr [rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop ; ret
-0x00000000004010ae : add byte ptr [rax], al ; endbr64 ; ret
-0x0000000000401039 : add byte ptr [rax], al ; jmp 0x401020
-0x000000000040117e : add byte ptr [rax], al ; jmp 0x4011a7
-0x00000000004011e0 : add byte ptr [rax], al ; jmp 0x4011f2
-0x00000000004011d0 : add byte ptr [rax], al ; jmp 0x401236
-0x00000000004011d9 : add byte ptr [rax], al ; mov dword ptr [rbp - 0x2c], 0 ; jmp 0x4011f2
-0x0000000000401177 : add byte ptr [rax], al ; mov dword ptr [rbp - 4], 0 ; jmp 0x4011a7
-0x000000000040130a : add byte ptr [rax], al ; pop rbp ; ret
-0x0000000000401034 : add byte ptr [rax], al ; push 0 ; jmp 0x401020
-0x0000000000401044 : add byte ptr [rax], al ; push 1 ; jmp 0x401020
-0x0000000000401054 : add byte ptr [rax], al ; push 2 ; jmp 0x401020
-0x0000000000401064 : add byte ptr [rax], al ; push 3 ; jmp 0x401020
-0x0000000000401074 : add byte ptr [rax], al ; push 4 ; jmp 0x401020
-0x00000000004010e6 : add byte ptr [rax], al ; ret
-0x000000000040100d : add byte ptr [rax], al ; test rax, rax ; je 0x401016 ; call rax
-0x00000000004010d8 : add byte ptr [rax], al ; test rax, rax ; je 0x4010e8 ; jmp rax
-0x0000000000401119 : add byte ptr [rax], al ; test rax, rax ; je 0x401128 ; jmp rax
-0x0000000000401125 : add byte ptr [rax], r8b ; ret
-0x000000000040114b : add byte ptr [rcx], al ; pop rbp ; ret
-0x0000000000401118 : add byte ptr cs:[rax], al ; test rax, rax ; je 0x401128 ; jmp rax
-0x0000000000401047 : add dword ptr [rax], eax ; add byte ptr [rax], al ; jmp 0x401020
-0x000000000040114c : add dword ptr [rbp - 0x3d], ebx ; nop ; ret
-0x0000000000401147 : add eax, 0x2f13 ; add dword ptr [rbp - 0x3d], ebx ; nop ; ret
-0x0000000000401067 : add eax, dword ptr [rax] ; add byte ptr [rax], al ; jmp 0x401020
-0x0000000000401017 : add esp, 8 ; ret
-0x0000000000401016 : add rsp, 8 ; ret
-0x00000000004012a8 : call qword ptr [rax + 0x4855c35d]
-0x00000000004011bb : call qword ptr [rax + 0x4855c3c9]
-0x0000000000401014 : call rax
-0x000000000040117b : cld ; add byte ptr [rax], al ; add byte ptr [rax], al ; jmp 0x4011a7
-0x0000000000401163 : cli ; jmp 0x4010f0
-0x00000000004010b3 : cli ; ret
-0x0000000000401313 : cli ; sub rsp, 8 ; add rsp, 8 ; ret
-0x0000000000401160 : endbr64 ; jmp 0x4010f0
-0x00000000004010b0 : endbr64 ; ret
-0x00000000004011ca : enter 0x45c7, -0x28 ; add byte ptr [rax], al ; add byte ptr [rax], al ; jmp 0x401236
-0x0000000000401042 : fisubr dword ptr [rdi] ; add byte ptr [rax], al ; push 1 ; jmp 0x401020
-0x0000000000401012 : je 0x401016 ; call rax
-0x00000000004010dd : je 0x4010e8 ; jmp rax
-0x000000000040111e : je 0x401128 ; jmp rax
-0x00000000004011c9 : jge 0x401193 ; mov dword ptr [rbp - 0x28], 0 ; jmp 0x401236
-0x000000000040103b : jmp 0x401020
-0x0000000000401164 : jmp 0x4010f0
-0x0000000000401180 : jmp 0x4011a7
-0x00000000004011e2 : jmp 0x4011f2
-0x00000000004011d2 : jmp 0x401236
-0x00000000004010df : jmp rax
-0x0000000000401248 : jne 0x4011d4 ; nop ; nop ; pop rax ; pop rdx ; pop rsi ; pop rdi ; pop rbp ; ret
-0x00000000004011bd : leave ; ret
-0x0000000000401032 : loop 0x401063 ; add byte ptr [rax], al ; push 0 ; jmp 0x401020
-0x000000000040100b : loope 0x40103c ; add byte ptr [rax], al ; test rax, rax ; je 0x401016 ; call rax
-0x0000000000401121 : loopne 0x401189 ; nop dword ptr [rax + rax] ; ret
-0x0000000000401146 : mov byte ptr [rip + 0x2f13], 1 ; pop rbp ; ret
-0x0000000000401249 : mov dl, byte ptr [rax + 0x5e5a5890] ; pop rdi ; pop rbp ; ret
-0x00000000004011cb : mov dword ptr [rbp - 0x28], 0 ; jmp 0x401236
-0x00000000004011db : mov dword ptr [rbp - 0x2c], 0 ; jmp 0x4011f2
-0x0000000000401179 : mov dword ptr [rbp - 4], 0 ; jmp 0x4011a7
-0x0000000000401307 : mov eax, 0 ; pop rbp ; ret
-0x00000000004011bc : nop ; leave ; ret
-0x000000000040124a : nop ; nop ; pop rax ; pop rdx ; pop rsi ; pop rdi ; pop rbp ; ret
-0x000000000040124b : nop ; pop rax ; pop rdx ; pop rsi ; pop rdi ; pop rbp ; ret
-0x00000000004012a9 : nop ; pop rbp ; ret
-0x000000000040114f : nop ; ret
-0x0000000000401123 : nop dword ptr [rax + rax] ; ret
-0x000000000040115c : nop dword ptr [rax] ; endbr64 ; jmp 0x4010f0
-0x00000000004010e1 : nop dword ptr [rax] ; ret
-0x0000000000401122 : nop word ptr [rax + rax] ; ret
-0x000000000040111f : or bh, bh ; loopne 0x401189 ; nop dword ptr [rax + rax] ; ret
-0x000000000040124c : pop rax ; pop rdx ; pop rsi ; pop rdi ; pop rbp ; ret
-0x000000000040114d : pop rbp ; ret
-0x000000000040124f : pop rdi ; pop rbp ; ret
-0x000000000040124d : pop rdx ; pop rsi ; pop rdi ; pop rbp ; ret
-0x000000000040124e : pop rsi ; pop rdi ; pop rbp ; ret
-0x0000000000401036 : push 0 ; jmp 0x401020
-0x0000000000401046 : push 1 ; jmp 0x401020
-0x0000000000401056 : push 2 ; jmp 0x401020
-0x0000000000401066 : push 3 ; jmp 0x401020
-0x0000000000401076 : push 4 ; jmp 0x401020
-0x000000000040101a : ret
-0x0000000000401072 : ret 0x2f
-0x0000000000401191 : ret 0xce89
-0x0000000000401062 : retf 0x2f
-0x0000000000401011 : sal byte ptr [rdx + rax - 1], 0xd0 ; add rsp, 8 ; ret
-0x0000000000401052 : shr byte ptr [rdi], cl ; add byte ptr [rax], al ; push 2 ; jmp 0x401020
-0x0000000000401315 : sub esp, 8 ; add rsp, 8 ; ret
-0x0000000000401314 : sub rsp, 8 ; add rsp, 8 ; ret
-0x0000000000401010 : test eax, eax ; je 0x401016 ; call rax
-0x00000000004010db : test eax, eax ; je 0x4010e8 ; jmp rax
-0x000000000040111c : test eax, eax ; je 0x401128 ; jmp rax
-0x000000000040100f : test rax, rax ; je 0x401016 ; call rax
-0x00000000004010da : test rax, rax ; je 0x4010e8 ; jmp rax
-0x000000000040111b : test rax, rax ; je 0x401128 ; jmp rax
+ROPgadget --binary ./bin/ex2 --only "mov|pop|xor|ret"
+```
 
-Unique gadgets found: 105
+**Q7**: How would you call `dream_msg()` with one of the strings in the binary using a ROP chain? Try it.
+
+**Answer**:
+
+The address of `ephemereal` variable is:
+
+```bash
+pwndbg> p &ephemereal 
+$2 = (char (*)[8]) 0x404048 <ephemereal>
+```
+
+The address of the `dream_msg` functio is:
+
+```bash
+pwndbg> info address dream_msg 
+Symbol "dream_msg" is a function at address 0x401166.
+```
+
+```bash
+pwndbg> p &souldream 
+$1 = (char (*)[256]) 0x404080 <souldream>
 ```
