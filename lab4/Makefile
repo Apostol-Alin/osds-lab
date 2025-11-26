@@ -10,7 +10,7 @@ ex1:
 
 ex2:
 	@if [ ! -d ./bin ]; then mkdir bin; fi
-	gcc  ex2.c -o ./bin/ex2 -zlazy -pie -fstack-protector-all -g
+	gcc  ex2.c -o ./bin/ex2 -zlazy -fPIE -fstack-protector-all -g
 
 cookies:
 	@if [ ! -d ./bin ]; then mkdir bin; fi
