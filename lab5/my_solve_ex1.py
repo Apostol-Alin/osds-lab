@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # Ideea is to leak the address of DB_HEAD->next->next->next->next
 # In the data part of the struct, there is an int we can use to get admin priviledges
