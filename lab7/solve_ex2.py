@@ -19,8 +19,6 @@ from pwn import *
 
 target = process("./bin/ex2")
 
-# target.recvuntil(b'--------------------------\n\n')
-
 # Choose the flip-bit action
 target.sendline(b"1")
 
